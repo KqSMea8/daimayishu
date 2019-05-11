@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block header %}
+<link rel="stylesheet" type="text/css" href="../../static/css/htmleaf-demo.css">
+<link rel="stylesheet" type="text/css" href="../../static/css/verify.css">
+<style type="text/css" rel="stylesheet">
+    .bt_right {
+        float: right;
+    }
+
+    .search {
+        margin-bottom: 30px;
+    }
+
+    .search a {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .pager {
+        margin-top: 30px;
+    }
+
+    .list {
+        color: #0b2e13;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+<div class="w-100">
+    <h3 class="mb-5">资源自行索取</h3>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info" role="alert">
+        {{message}}
+        {% for url in resource_url%}
+        <a href="{{url}}" class="alert-link" target="_blank">点我下载</a>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="row search">
+        <div class="col-lg-12 ">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="输入书名关键字（如python）" id="key_word_input"
+                       onmouseleave="set_resource_word()" required>
+                <span class="input-group-btn">
+         <a class="btn btn-outline-info bt_right" href="{{ url_for('resource.index')}}?key_word=" role="button"
+            id="key_word_btn">搜索资源</a>
+      </span>
+            </div>
+        </div>
+    </div>
+    <ul class="list-group">
+        {% for item in resource %}
+        <li class="list-group-item list">
+            {{item["title"]}}
+            <a class="btn btn-outline-info bt_right" href="{{ url_for('resource.download')}}?key_word={{item['title']}}"
+               role="button" >下载资源</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center pager">
+            {% if page_obj and page_obj['has_prev'] %}
+            <li class="page-item ">
+                <a class="page-link btn btn-info"
+                   href="{{ url_for('resource.index',page_index=page_obj['page_prev'],key_word=page_obj['key_word'])}}"
+                   tabindex="-1">上一页</a>
+                {% else %}
+            <li class="page-item disabled">
+                <a class="page-link btn btn-info"
+                   href="#"
+                   tabindex="-1">上一页</a>
+                {% endif %}
+
+            </li>
+            {% if page_obj and page_obj['has_next'] %}
+            <li class="page-item ">
+                <a class="page-link btn btn-info"
+                   href="{{ url_for('resource.index',page_index=page_obj['page_next'],key_word=page_obj['key_word'])}}">下一页</a>
+                {% else %}
+            <li class="page-item disabled">
+                <a class="page-link btn btn-info"
+                   href="#">下一页</a>
+                {% endif %}
+
+            </li>
+        </ul>
+    </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="width: auto">
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <div id="mpanel5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block bottom %}
+<script type="text/javascript" src="../../static/js/verify.js"></script>
+<script src="../../static/js/common.js"></script>
+<script type="text/javascript">
+
+
+    $('#mpanel5').pointsVerify({
+        defaultNum: 5,	//默认的文字数量
+        checkNum: 2,	//校对的文字数量
+        vSpace: 5,	//间隔
+        imgName: ['../../static/img/1.jpg', '../../static/img/2.jpg'],
+        imgSize: {
+            width: '600px',
+            height: '200px',
+        },
+        barSize: {
+            width: '600px',
+            height: '40px',
+        },
+        ready: function () {
+        },
+        success: function () {
+
+        },
+        error: function () {
+
+        }
+
+    });
+
+</script>
+{% endblock %}

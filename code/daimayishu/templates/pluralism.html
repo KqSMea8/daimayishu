@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+
+{% endblock %}
+
+{% block content %}
+<div>
+    <h4>欢迎想利用空闲时间学习（锻炼）技术，顺便挣点零花钱（生活费）的朋友加入<span class="badge badge-info">代码艺术</span></h4>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    <form action="{{url_for('pluralism.add')}}" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputName">称呼</label>
+                <input type="text" class="form-control" id="inputName" name="name" placeholder="请输入你的称呼" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAge">年龄</label>
+                <input type="number" class="form-control" id="inputAge" name="age" placeholder="请输入你的年龄" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 select_format">
+                <label for="inputIdentity">身份</label>
+                <select id="inputIdentity" class="form-control" name="identity">
+                    <option selected value="student">学生</option>
+                    <option value="worker">社会人员</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6 select_format">
+                <label for="pluralismType">兼职方式</label>
+                <select id="pluralismType" class="form-control" name="pluralismType">
+                    <option selected value="perTask">按单结算</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputFreetime">空闲时间</label>
+                <input type="number" name="freetime" class="form-control" id="inputFreetime"
+                       placeholder="每周能抽出多少空闲时间，以小时为单位" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputContact">少俠，留下你的联系方式</label>
+                <input type="text" name="contact" class="form-control" id="inputContact" placeholder="比如（weixin:hy6678）"
+                       required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="skillTextarea">简单介绍一下你的吃饭技能以及你想要做什么方向的任务,如果不填写将无法为你匹配合适的任务。</label>
+            <textarea class="form-control" id="skillTextarea" rows="3" name="skill">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="resume">请上传一份简历</label>
+            <input type="file" class="form-control-file" id="resume" name="resume"
+                   accept="application/msword,application/pdf,application/vnd.ms-powerpoint" required>
+        </div>
+        <button type="submit" class="btn btn-info">确认兼职</button>
+    </form>
+
+</div>
+{% endblock %}

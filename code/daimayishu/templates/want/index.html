@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<style type="text/css">
+    .form_format {
+        width: 70%;
+    }
+
+    .submit_format {
+        float: right;
+    }
+
+    .car_format {
+        position: absolute;
+        right: 0;
+        width: 20%;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<form class="form_format">
+    <div class="form-group">
+        <label for="pdfTextArea">书名</label>
+        <textarea class="form-control" id="pdfTextArea" rows="3" placeholder="多本书名之间用分号（;）分割，每人每天最多支持索取三本，瞎写的和书名检测不了的将不帮忙查找"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="weixinId">微信号</label>
+        <input type="text" class="form-control" id="weixinId" placeholder="请输入你的微信号，方便跟你汇报结果">
+    </div>
+    <button type="submit" class="btn btn-info btn-lg submit_format">提交</button>
+</form>
+<div class="card" style="position: absolute;right: 0px;width: 20%">
+    <h5 class="card-header list-group-item-info">温馨提示</h5>
+    <div class="card-body">
+        <h5 class="card-title">关注公众号</h5>
+        <p class="card-text">由于本站未启用用户系统，请关注公众号再使用此功能哦，本站将通过公众号向你汇报结果。</p>
+        <a href="#" class="btn btn-info">去关注</a>
+    </div>
+</div>
+{% endblock %}

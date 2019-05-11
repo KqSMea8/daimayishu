@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<style type="text/css">
+    .form_format {
+        width: 100%;
+    }
+
+    .submit_format {
+        float: right;
+    }
+
+    .car_format {
+        position: absolute;
+        right: 0;
+        width: 20%;
+    }
+
+    .div_format {
+        width: 70%;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="div_format">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    <form class="form_format" action="{{url_for('advisory.add')}}" method="post">
+        <div class="form-group">
+            <label for="pdfTextArea">请写出你的问题</label>
+            <textarea class="form-control" id="pdfTextArea" rows="3"
+                      placeholder="请不要瞎问哦，谢谢!本站有权利拒绝回答一些乱七八糟，毫无意义的问题" name="question" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-info btn-lg submit_format">提交</button>
+    </form>
+</div>
+<div class="card car_format" style="position: absolute;right: 0px;width: 20%;">
+    <h5 class="card-header list-group-item-info">温馨提示</h5>
+    <div class="card-body">
+        <h5 class="card-title">关注公众号</h5>
+        <p class="card-text">本站针对你的提问进行回答之后，会在公众号推送，请注意查收。如果不想关注公众号，可以24小时后再來本站查看</p>
+        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">去关注</a>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">扫码关注公众号</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <img src="../static/img/gongzhonghao.jpg" alt="公众号二维码" class="img-thumbnail">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

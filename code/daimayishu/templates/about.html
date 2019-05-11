@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block header %}
+<style type="text/css">
+    .video_bg {
+        margin: auto;
+    }
+    .video_bg h4{
+        margin-bottom: 30px;
+        margin-left: -60px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="video_bg">
+    <h4>来啦？请坐，先花费你一点宝贵的时间，看下视频介绍。 <span class="badge badge-info">代码艺术</span></h4>
+    <video controls="controls" loop="loop" autoplay="autoplay" muted >
+        <source src="../static/img/about.mp4" type="video/mp4"/>
+        浏览器不支持播放此视频
+    </video>
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>代码艺术</title>
+    <link rel="icon" href="../static/img/daiamyishu.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../static/img/daiamyishu.ico" type="image/x-icon">
+    {% block header %}
+    {% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+    <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/resume.min.css" rel="stylesheet">
+    <style type="text/css" rel="stylesheet">
+        .bg {
+            background-color: #17A2B8;
+        }
+    </style>
+
+
+</head>
+
+<body id="page-top">
+
+<nav class="navbar navbar-expand-lg navbar-dark  fixed-top bg" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">代码艺术</span>
+        <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../static/img/img4.jpg" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{url_for('about.index')}} ">关于代码艺术</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{url_for('resource.index')}}">下载书籍资源</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{url_for('service.index')}}">服务</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{url_for('blog.index')}}">博客</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{url_for('gongzhonghao.index')}}">公众号</a>
+            </li>
+            <!--<li class="nav-item">-->
+            <!--<a class="nav-link js-scroll-trigger" href="{{url_for('want.index')}}">我想要</a>-->
+            <!--</li>-->
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{url_for('advisory.index')}}">我要咨询</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{url_for('pluralism.index')}}">我想兼职</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center ">
+    {% block content %}
+    {% endblock%}
+
+</section>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="../static/vendor/jquery/jquery.min.js"></script>
+<script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../static/js/resume.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+{% block bottom %}
+{% endblock %}
+</body>
+
+</html>

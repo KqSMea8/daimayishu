@@ -1,0 +1,137 @@
+﻿{% extends 'base.html' %}
+
+{% block header %}
+
+<style type="text/css">
+    .search_format {
+        margin-bottom: 20px;
+    }
+
+    .pager_format {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .category_format {
+        right: 10px;
+        width: 20%;
+        position: absolute;
+        top: 50px;
+    }
+
+    .tip_format {
+        margin-top: 20px;
+    }
+
+    .content_format {
+        width: 70%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="list-group content_format">
+    <div class="row search search_format">
+        <div class="col-lg-12 ">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="输入关键词(如python)" id="key_word_input"
+                       onmouseleave="set_blog_word()" required>
+                <span class="input-group-btn">
+         <a class="btn btn-outline-info bt_right" href="{{ url_for('blog.index',key_word=key_word)}}" role="button"
+            id="key_word_btn">搜索博客</a>
+      </span>
+            </div>
+        </div>
+    </div>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% for blog in blogs %}
+    <a href="{{ url_for('blog.show',title=blog.title)}}"
+       class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ blog["title"] }}</h5>
+            <small>{{ blog["create_time"] }}</small>
+        </div>
+        <p class="mb-1">{{ blog["description"] }}</p>
+    </a>
+    {% endfor %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center pager pager_format">
+            {% if page_obj and page_obj['has_prev'] %}
+            <li class="page-item ">
+                <a class="page-link btn btn-info"
+                   href="{{ url_for('blog.index',page_index=page_obj['page_prev'],key_word=page_obj['key_word']
+                   ,category=page_obj['category'])}}"
+                   tabindex="-1">上一页</a>
+                {% else %}
+            <li class="page-item disabled">
+                <a class="page-link btn btn-info"
+                   href="#"
+                   tabindex="-1">上一页</a>
+                {% endif %}
+
+            </li>
+            {% if page_obj and page_obj['has_next'] %}
+            <li class="page-item ">
+                <a class="page-link btn btn-info"
+                   href="{{ url_for('blog.index',page_index=page_obj['page_next'],key_word=page_obj['key_word']
+                    ,category=page_obj['category'])}}">下一页</a>
+                {% else %}
+            <li class="page-item disabled">
+                <a class="page-link btn btn-info"
+                   href="#">下一页</a>
+                {% endif %}
+
+            </li>
+        </ul>
+    </nav>
+    <div class="category_format">
+        <ul class="list-group ">
+            <li class="list-group-item list-group-item-info">类别</li>
+            {% for category in category_info %}
+            <a class="list-group-item list-group-item-action flex-column align-items-start"
+               href="{{ url_for('blog.index',category=category.name)}}">
+                {{ category.name}}
+                <span class="badge badge-info badge-pill">{{ category.num}}</span>
+            </a>
+            {% endfor %}
+        </ul>
+        <div class="card tip_format">
+            <h5 class="card-header list-group-item-info">温馨提示</h5>
+            <div class="card-body">
+                <h5 class="card-title">关注公众号</h5>
+                <p class="card-text">如果想获得网站的博文更新情况，可以关注公众号。本站保证博文的质量绝对不辣眼睛！并且对你的基础知识会有帮助。</p>
+                <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">去关注</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">扫码关注公众号</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <img src="../static/img/gongzhonghao.jpg" alt="公众号二维码" class="img-thumbnail">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block bottom %}
+<script src="../../static/js/common.js"></script>
+{% endblock %}
